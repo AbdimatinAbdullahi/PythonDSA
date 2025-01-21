@@ -79,7 +79,7 @@ class LinkedList:
         if index == 0:
             self.head = self.head.next
             return
-            
+
         prevNde = self.head
         curIndex = 0
 
@@ -87,6 +87,32 @@ class LinkedList:
             prevNde = prevNde.next
             curIndex += 1
         prevNde.next = prevNde.next.next
+    
+    def inserted_at(self, value, index):
+        if index < 0 or index > self.size():
+            print(f"Invalid Index: the length of linked list is: {self.size()}")
+            return
+
+        newNode = Node(value)
+
+        if index == 0 and self.head is None:
+            self.head = newNode
+        
+        if index == 0:
+            newNode.next = self.head
+            self.head = newNode
+            return
+        
+        prevNode = self.head
+        currIndex = 0
+
+        while currIndex < index - 1:
+            currIndex += 1
+            prevNode = prevNode.next
+        
+        newNode.next = prevNode.next
+        prevNode.next = newNode
+
 
     def display(self):
         currentNode = self.head
@@ -102,6 +128,8 @@ linkedlist.insert_at_the_begining(10)
 linkedlist.insert_at_the_begining(20)
 linkedlist.insert_at_the_begining(30)
 linkedlist.insert_at_end(40)
+linkedlist.inserted_at(50, 4)
+linkedlist.inserted_at(60, 4)
+linkedlist.inserted_at(70, 6)
 print(linkedlist.size())
-linkedlist.delete_at(0)
 linkedlist.display()
