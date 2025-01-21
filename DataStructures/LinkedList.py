@@ -52,13 +52,40 @@ class LinkedList:
         else:
             self.head = self.head.next
     
+    def size(self):
+        if self.isEmpty():
+            print("LinkedList is Empty")
+            return 0 
+
+        len = 0
+        currentNode = self.head
+
+        while currentNode:
+            len = len + 1
+            currentNode = currentNode.next
+        
+        return len
+        
+    
     def delete_at(self, index):
+        if self.isEmpty():
+            print("Nothing to delete: List is Empty")
+            return
+
+        #  Providing index that is less that one or greater than len of linked list
+        if index < 0 and index >= self.size():
+            print("Invalid index")
+
+        if index == 0:
+            self.head = self.head.next
+            return
+            
         prevNde = self.head
         curIndex = 0
 
         while curIndex < index - 1:
             prevNde = prevNde.next
-            curIndex = curIndex + 1
+            curIndex += 1
         prevNde.next = prevNde.next.next
 
     def display(self):
@@ -75,6 +102,6 @@ linkedlist.insert_at_the_begining(10)
 linkedlist.insert_at_the_begining(20)
 linkedlist.insert_at_the_begining(30)
 linkedlist.insert_at_end(40)
-linkedlist.delete_from_end()
-linkedlist.delete_from_start()
+print(linkedlist.size())
+linkedlist.delete_at(0)
 linkedlist.display()
