@@ -29,6 +29,8 @@ class Tree:
         else:
             print("The value exist already in the tree")
     
+    
+    
     # Inorder Traversal: left -> root -> right 
     def in_order_traversal(self):
         return self.in_order_recursive(self.root, result=[])
@@ -39,6 +41,8 @@ class Tree:
             result.append(root.value)
             self.in_order_recursive(root.right, result)
         return result
+    
+    
     
     # Pre order Traversal: root -> left -> right
     def pre_order(self):
@@ -51,6 +55,8 @@ class Tree:
             self.pre_order_recursive(root.right, results)
         return results
     
+    
+    
     # Post Order Traversal: left -> right -> root
     def post_order(self):
         return self.post_order_recursive(self.root, results =[])
@@ -61,7 +67,32 @@ class Tree:
             self.post_order_recursive(root.right, results)
             results.append(root.value)
         return results
-        
+    
+
+
+    def search(self, value):
+        if self.root.value == value:
+            return True
+        else:
+            return self.search_recursive(self.root, value)
+    
+    def search_recursive(self, currentNode, value):
+        if currentNode is None:
+            return False
+        elif currentNode.value == value:
+            return True
+        elif currentNode.value < value:
+            return self.search_recursive(currentNode.right, value)
+        else :
+            return self.search_recursive(currentNode.left, value)
+
+
+
+
+
+
+
+
 
 tr = Tree()
 tr.insert(2)
@@ -73,3 +104,4 @@ tr.insert(1.5)
 print(tr.in_order_traversal())
 print(tr.pre_order())
 print(tr.post_order())
+print(tr.search(-1))
