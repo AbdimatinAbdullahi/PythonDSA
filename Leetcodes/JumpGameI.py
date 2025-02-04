@@ -10,3 +10,4 @@ def JumpGame(jumps):
     print(True if goal == 0 else False)
 
 JumpGame([2,3,1,1,4])
+JumpGame([3,2,1,0,4])
